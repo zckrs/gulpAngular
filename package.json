@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "dependencies": {},
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "gulp-test": "NODE_ENV=test mocha testWorkflowGulp/func.mocha.js --reporter spec -t 100000"
   },
   "devDependencies": {
     "gulp": "~3.9.0",
@@ -45,7 +46,10 @@
     "http-proxy-middleware": "~0.8.0",
     "chalk": "~1.1.1",
     "uglify-save-license": "~0.4.1",
-    "wrench": "~1.5.8"
+    "wrench": "~1.5.8",
+    "chai": "~3.0.0",
+    "cross-spawn": "~0.4.1",
+    "mocha": "~2.2.5"
   },
   "engines": {
     "node": ">=0.10.0"

@@ -18,6 +18,17 @@ exports.paths = {
   e2e: 'e2e'
 };
 
+if (process.env.NODE_ENV === 'test') {
+  exports.paths = {
+    src: 'testWorkflowGulp/fixture/src',
+    dist: 'testWorkflowGulp/build/dist',
+    tmp: 'testWorkflowGulp/build/.tmp',
+    e2e: 'testWorkflowGulp/fixture/e2e',
+    expectDist: 'testWorkflowGulp/expect/dist',
+    expectTmp: 'testWorkflowGulp/expect/.tmp'
+  };
+}
+
 /**
  *  Wiredep is the lib which inject bower dependencies in your project
  *  Mainly used to inject script tags in the index.html but also used

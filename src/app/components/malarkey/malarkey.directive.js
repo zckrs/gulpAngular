@@ -13,20 +13,22 @@
       scope: {
         values: '=',
       },
-      template: '<div class="malarkey"></div>',
+      template: '<div></div>',
       link: function(scope, element, attributes) {
+        var typist = malarkey(element[0], {
+          typeSpeed: 40,
+          deleteSpeed: 40,
+          pauseDelay: 800,
+          loop: true,
+          postfix: ' '
+        });
+
+        angular.forEach(scope.values, function(value, index) {
+          typist.type(value).pause().delete();
+        })
+
         var timeoutId = $timeout(function() {
-          var elem = document.querySelectorAll('.malarkey')[0];
-          var opts = {
-            typeSpeed: 50,
-            deleteSpeed: 50,
-            pauseDelay: 2000,
-            loop: true,
-            postfix: ''
-          };
-          var typist = malarkey(elem, opts);
-          typist.type('Say hello').pause().delete().type('Wave goodbye').pause().delete();
-          $log.debug(typist);
+
         }, 1000);
       }
     };

@@ -22,6 +22,7 @@
     return directive;
 
     function linkFunc(scope, el, attr, vm) {
+      var watcher;
       var typist = malarkey(el[0], {
         typeSpeed: 40,
         deleteSpeed: 40,
@@ -30,21 +31,48 @@
         postfix: ' '
       });
 
-      var concatedValue = vm.values.concat(scope.extraValues);
-
-      angular.forEach(concatedValue, function(value) {
+      angular.forEach(scope.extraValues, function(value) {
         typist.type(value).pause().delete();
+      });
+
+      watcher = scope.$watch('vm.contributors', function(current, original) {
+        console.log('watch vm.contributors');
+        console.log(current);
+        console.log(original);
+
+        angular.forEach(vm.contributors, function(contributor) {
+          typist.type(contributor.login).pause().delete();
+        });
+      });
+
+      scope.$on('$destroy', function () {
+        watcher();
       });
     }
 
   }
 
   /** @ngInject */
-  function MalarkeyController() {
+  function MalarkeyController($log, githubApi) {
     var vm = this;
 
-    // Fetch top 10 contributors of generator-gulp-angular
-    vm.values = ['swiip!', 'zckrs', '....'];
+    vm.contributors = [];
+
+    activate();
+
+    function activate() {
+      return getContributors().then(function() {
+        $log.info('Activated Contributors View');
+      });
+    }
+
+    function getContributors() {
+      return githubApi.getContributors(10).then(function(data) {
+          vm.contributors = data;
+
+          return vm.contributors;
+        });
+    }
   }
 
 })();

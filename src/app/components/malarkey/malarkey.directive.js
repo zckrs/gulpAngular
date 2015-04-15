@@ -4,10 +4,10 @@
 
   angular
     .module('gulpAngular')
-    .directive('acmeMalarkey', malarkeyWrapper);
+    .directive('acmeMalarkey', acmeMalarkey);
 
   /** @ngInject */
-  function malarkeyWrapper() {
+  function acmeMalarkey() {
     var directive = {
       restrict: 'E',
       scope: {

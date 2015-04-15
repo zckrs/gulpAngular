@@ -1,12 +1,13 @@
+/* global malarkey:false */
 (function() {
   'use strict';
 
   angular
     .module('gulpAngular')
-    .directive('malarkey', malarkeyWrapper);
+    .directive('acmeMalarkey', malarkeyWrapper);
 
   /** @ngInject */
-  function malarkeyWrapper($log, $timeout) {
+  function malarkeyWrapper() {
 
     return {
       restrict: 'AE',
@@ -14,7 +15,7 @@
         values: '=',
       },
       template: '<div></div>',
-      link: function(scope, element, attributes) {
+      link: function(scope, element) {
         var typist = malarkey(element[0], {
           typeSpeed: 40,
           deleteSpeed: 40,
@@ -23,9 +24,9 @@
           postfix: ' '
         });
 
-        angular.forEach(scope.values, function(value, index) {
+        angular.forEach(scope.values, function(value) {
           typist.type(value).pause().delete();
-        })
+        });
       }
     };
   }

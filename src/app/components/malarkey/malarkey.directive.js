@@ -1,4 +1,3 @@
-/* global malarkey:false */
 (function() {
   'use strict';
 
@@ -7,13 +6,13 @@
     .directive('acmeMalarkey', acmeMalarkey);
 
   /** @ngInject */
-  function acmeMalarkey() {
+  function acmeMalarkey(malarkey) {
     var directive = {
       restrict: 'E',
       scope: {
         extraValues: '=',
       },
-      template: '<div></div>',
+      template: '&nbsp;',
       link: linkFunc,
       controller: MalarkeyController,
       controllerAs: 'vm'
@@ -31,11 +30,13 @@
         postfix: ' '
       });
 
+      el.addClass('acme-malarkey');
+
       angular.forEach(scope.extraValues, function(value) {
         typist.type(value).pause().delete();
       });
 
-      watcher = scope.$watch('vm.contributors', function(current, original) {
+      watcher = scope.$watch('vm.contributors', function() {
         angular.forEach(vm.contributors, function(contributor) {
           typist.type(contributor.login).pause().delete();
         });
@@ -46,29 +47,29 @@
       });
     }
 
-  }
+    /** @ngInject */
+    function MalarkeyController($log, githubContributor) {
+      var vm = this;
 
-  /** @ngInject */
-  function MalarkeyController($log, githubApi) {
-    var vm = this;
+      vm.contributors = [];
 
-    vm.contributors = [];
+      activate();
 
-    activate();
+      function activate() {
+        return getContributors().then(function() {
+          $log.info('Activated Contributors View');
+        });
+      }
 
-    function activate() {
-      return getContributors().then(function() {
-        $log.info('Activated Contributors View');
-      });
-    }
-
-    function getContributors() {
-      return githubApi.getContributors(10).then(function(data) {
+      function getContributors() {
+        return githubContributor.getContributors(10).then(function(data) {
           vm.contributors = data;
 
           return vm.contributors;
         });
+      }
     }
+
   }
 
 })();

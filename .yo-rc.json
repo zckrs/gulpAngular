@@ -40,10 +40,6 @@
         "key": "ui-bootstrap",
         "module": "ui.bootstrap"
       },
-      "foundationComponents": {
-        "key": "none",
-        "module": null
-      },
       "cssPreprocessor": {
         "key": "node-sass",
         "extension": "scss"
@@ -56,6 +52,12 @@
       "htmlPreprocessor": {
         "key": "none",
         "extension": "html"
+      },
+      "foundationComponents": {
+        "name": null,
+        "version": null,
+        "key": null,
+        "module": null
       },
       "paths": {
         "src": "src",

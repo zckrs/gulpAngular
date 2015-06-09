@@ -12,6 +12,11 @@ gulp.task('scripts', function () {
   return gulp.src(path.join(conf.paths.src, '/app/**/*.js'))
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
+    .pipe($.jscs({
+      fix: true,
+      configPath: '.jscsrc'
+    }))
     .pipe(browserSync.reload({ stream: true }))
-    .pipe($.size());
+    .pipe($.size())
+    .pipe(gulp.dest(path.join(conf.paths.src, '/app/')));
 });

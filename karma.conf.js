@@ -31,15 +31,30 @@ module.exports = function(config) {
 
     autoWatch: false,
 
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'src/',
+      moduleName: 'gulpAngular'
+    },
+
+    logLevel: 'WARN',
+
     frameworks: ['jasmine', 'angular-filesort'],
 
     angularFilesort: {
       whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock).js')]
     },
 
-    ngHtml2JsPreprocessor: {
-      stripPrefix: 'src/',
-      moduleName: 'gulpAngular'
+    reporters: ['progress', 'coverage'],
+
+    preprocessors: {
+      'src/**/*.html': ['ng-html2js'],
+      'src/**/!(*.spec).js': ['coverage']
+    },
+
+    // optionally, configure the reporter
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
     },
 
     browsers : ['PhantomJS'],
@@ -47,13 +62,10 @@ module.exports = function(config) {
     plugins : [
       'karma-phantomjs-launcher',
       'karma-angular-filesort',
+      'karma-coverage',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor'
-    ],
-
-    preprocessors: {
-      'src/**/*.html': ['ng-html2js']
-    }
+    ]
   };
 
   // This block is needed to execute Chrome on Travis

@@ -1,18 +1,20 @@
 (function() {
   'use strict';
 
+  /**
+   * @todo Complete the test
+   * This example is not perfect.
+   * Test should check if Momentjs have been called
+   * (malarkey usage, addClass, $watch, $destroy)
+   */
   describe('directive navbar', function() {
-    var $compile;
-    var $rootScope;
     // var $window;
     var vm;
     var el;
     var timeInMs;
 
     beforeEach(module('gulpAngular'));
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$window_) {
-      $compile = _$compile_;
-      $rootScope = _$rootScope_;
+    beforeEach(inject(function($compile, $rootScope) {
       // spyOn(_$window_, 'moment').and.callThrough();
       // $window = _$window_;
 
@@ -31,7 +33,9 @@
       expect(el.html()).not.toEqual(null);
     });
 
-    it('should have one isolate scope instanciate', function() {
+    it('should have isolate scope object with instanciate members', function() {
+      expect(vm).toEqual(jasmine.any(Object));
+
       expect(vm.creationDate).toEqual(jasmine.any(Number));
       expect(vm.creationDate).toEqual(timeInMs);
 

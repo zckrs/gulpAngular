@@ -50,13 +50,26 @@ describe('Workflow Gulp', function() {
 
   describe('should have dist/ folder', function() {
     it('who exist', function(done) {
-      fs.exists(join('testWorkflowGulp/expect/distsdsd'), function(exists) {
-        /* Stinks that ok is an expression instead of a function call */
-        /* jshint expr: true */
-        exists.should.be.ok;
-        /* jshint expr: false */
-        done();
-      });
+      try {
+        var azeaze = fs.openSync(join('testWorkflowGulp/expect/qsdqsd'), 'r');
+
+      } catch (e) {
+        azeaze = false
+      } finally {
+        azeaze.should.be.ok;
+        done()
+        console.log(azeaze);
+
+      }
+
+      // fs.exists(join('testWorkflowGulp/expect/distsdsd'), function(exists) {
+      //   /* Stinks that ok is an expression instead of a function call */
+      //   /* jshint expr: true */
+      //   exists.should.be.ok;
+      //   /* jshint expr: false */
+      //   done();
+      // });
     });
+  });
 
 });

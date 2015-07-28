@@ -51,15 +51,12 @@ describe('Workflow Gulp', function() {
   describe('should have dist/ folder', function() {
     it('who exist', function(done) {
       try {
-        var azeaze = fs.openSync(join('testWorkflowGulp/expect/qsdqsd'), 'r');
-
+        var result = fs.openSync(join('testWorkflowGulp/build/dist'), 'r');
       } catch (e) {
-        azeaze = false
+        result = false
       } finally {
-        azeaze.should.be.ok;
-        done()
-        console.log(azeaze);
-
+        result.should.be.ok;
+        done();
       }
 
       // fs.exists(join('testWorkflowGulp/expect/distsdsd'), function(exists) {

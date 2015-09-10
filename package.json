@@ -4,7 +4,7 @@
   "dependencies": {},
   "scripts": {
     "test": "gulp test",
-    "gulp-test": "NODE_ENV=test mocha testWorkflowGulp/func.mocha.js --reporter spec -t 100000"
+    "gulp-test": "NODE_ENV=test mocha testWorkflowGulp/*.mocha.js --reporter spec -t 100000"
   },
   "devDependencies": {
     "browser-sync": "~2.9.2",

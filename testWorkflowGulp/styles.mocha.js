@@ -12,15 +12,12 @@ describe('Workflow Gulp', function() {
   var expectDir = 'testWorkflow/expect/';
 
   before(function(done) {
-    gulpHelpers.cleanAndRun([conf.paths.dist, conf.paths.tmp], 'partials', done);
+    gulpHelpers.cleanAndRun([conf.paths.dist, conf.paths.tmp], 'styles', done);
   });
 
   describe('should have templateCacheHtml.js file', function() {
     it('who exist', function() {
-      assert.file(join(conf.paths.tmp, 'partials/templateCacheHtml.js'));
-    });
-    it('who contains $templateCache call', function() {
-      assert.fileContent(join(conf.paths.tmp, 'partials/templateCacheHtml.js'), '$templateCache');
+      assert.file(join(conf.paths.tmp, 'serve/app/index.css'));
     });
   });
 

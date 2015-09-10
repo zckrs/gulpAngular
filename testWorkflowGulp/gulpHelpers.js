@@ -8,7 +8,7 @@ exports.cleanAndRun = function (paths, task, callback) {
   return del([conf.paths.dist, conf.paths.tmp]).then(function (paths) {
     console.log('Deleted files/folders:\n', paths.join('\n'));
 
-    var gulp = spawn('node', ['node_modules/.bin/gulp', 'partials']);
+    var gulp = spawn('node', ['node_modules/.bin/gulp', task]);
 
     console.log('##command \'gulp\' started');
 

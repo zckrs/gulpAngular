@@ -15,13 +15,8 @@ describe('Workflow Gulp', function() {
   var expectDir = 'testWorkflow/expect/';
 
   before(function(done) {
-
-    del([conf.paths.dist, conf.paths.tmp], function (err, paths) {
+    del([conf.paths.dist, conf.paths.tmp]).then(function (paths) {
       console.log('Deleted files/folders:\n', paths.join('\n'));
-
-      if (err) {
-        throw err;
-      }
 
       var gulp = spawn('node', ['node_modules/.bin/gulp']);
 

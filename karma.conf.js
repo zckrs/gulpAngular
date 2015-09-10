@@ -44,19 +44,6 @@ module.exports = function(config) {
       whitelist: [path.join(conf.paths.src, '/**/!(*.html|*.spec|*.mock).js')]
     },
 
-    reporters: ['progress', 'coverage'],
-
-    preprocessors: {
-      'src/**/*.html': ['ng-html2js'],
-      'src/**/!(*.spec).js': ['coverage']
-    },
-
-    // optionally, configure the reporter
-    coverageReporter: {
-      type : 'html',
-      dir : 'coverage/'
-    },
-
     browsers : ['PhantomJS'],
 
     plugins : [
@@ -65,8 +52,25 @@ module.exports = function(config) {
       'karma-coverage',
       'karma-jasmine',
       'karma-ng-html2js-preprocessor'
-    ]
+    ],
+
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
+    },
+
+    reporters: ['progress', 'coverage']
   };
+
+  var preprocessors = {};
+  var pathSrcHtml = path.join(conf.paths.src, '/**/*.html');
+  preprocessors[pathSrcHtml] = ['ng-html2js'];
+
+  var pathSrcJs = path.join(conf.paths.src, '/**/!(*.spec).js');
+
+  preprocessors[pathSrcJs] = ['coverage'];
+
+  configuration.preprocessors = preprocessors;
 
   // This block is needed to execute Chrome on Travis
   // If you ever plan to use Chrome and Travis, you can keep it

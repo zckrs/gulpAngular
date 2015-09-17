@@ -11,7 +11,7 @@ var $ = require('gulp-load-plugins')();
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
 
-gulp.task('styles', function () {
+function styles() {
   var sassOptions = {
     style: 'expanded'
   };
@@ -31,7 +31,6 @@ gulp.task('styles', function () {
     addRootSlash: false
   };
 
-
   return gulp.src([
     path.join(conf.paths.src, '/app/index.scss')
   ])
@@ -43,4 +42,6 @@ gulp.task('styles', function () {
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve/app/')))
     .pipe(browserSync.reload({ stream: true }));
-});
+};
+
+gulp.task('styles', styles);

@@ -7,23 +7,31 @@
 'use strict';
 
 var gulp = require('gulp');
-var wrench = require('wrench');
+var HubRegistry = require('gulp-hub');
+var conf = require('./gulp/conf');
+var path = require('path');
 
-/**
- *  This will load all js or coffee files in the gulp directory
- *  in order to load all gulp tasks
- */
-wrench.readdirSyncRecursive('./gulp').filter(function(file) {
-  return (/\.(js|coffee)$/i).test(file);
-}).map(function(file) {
-  require('./gulp/' + file);
-});
+/* load some files into the registry */
+var hub = new HubRegistry(['gulp/build.js', 'gulp/styles.js', 'gulp/scripts.js', 'gulp/inject.js', 'gulp/browserSync.js']);
 
+/* tell gulp to use the tasks just loaded */
+gulp.registry(hub);
 
-/**
- *  Default task clean temporaries directories and launch the
- *  main optimization build task
- */
-gulp.task('default', ['clean'], function () {
-  gulp.start('build');
-});
+function watch(done) {
+  gulp.watch([path.join(conf.paths.src, '/*.html'), 'bower.json'], gulp.parallel('inject'));
+
+  gulp.watch([
+    path.join(conf.paths.src, '/app/**/*.css'),
+    path.join(conf.paths.src, '/app/**/*.scss')
+  ], gulp.series('styles', 'inject'));
+
+  gulp.watch(path.join(conf.paths.src, '/app/**/*.js'), gulp.series('scripts', 'inject'));
+
+  done();
+};
+
+gulp.task('watch', watch);
+
+gulp.task('serve', gulp.series('watch', 'browser-sync'));
+
+gulp.task('default', gulp.series('clean', gulp.parallel('partials', 'styles', 'scripts'), 'inject', gulp.parallel('fonts', 'other', 'html')));

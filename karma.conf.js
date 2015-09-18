@@ -3,7 +3,7 @@
 var path = require('path');
 var conf = require('./gulp/conf');
 
-var _ = require('lodash');
+var extend = require('deep-extend');
 var wiredep = require('wiredep');
 
 var pathSrcHtml = [
@@ -11,7 +11,7 @@ var pathSrcHtml = [
 ];
 
 function listFiles() {
-  var wiredepOptions = _.extend({}, conf.wiredep, {
+  var wiredepOptions = extend({}, conf.wiredep, {
     dependencies: true,
     devDependencies: true
   });
@@ -40,7 +40,7 @@ module.exports = function(config) {
       moduleName: 'gulpAngular'
     },
 
-    logLevel: 'WARN',
+    logLevel: 'ERROR',
 
     frameworks: ['jasmine', 'angular-filesort'],
 

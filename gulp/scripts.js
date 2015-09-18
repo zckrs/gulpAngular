@@ -11,9 +11,7 @@ var $ = require('gulp-load-plugins')();
 function scripts() {
   return gulp.src(path.join(conf.paths.src, '/app/**/*.js'))
     .pipe($.eslint())
-    .pipe($.eslint.format())
-    .pipe(browserSync.reload({ stream: true }))
-    .pipe($.size());
+    .pipe($.eslint.format());
 };
 
 gulp.task('scripts', scripts);

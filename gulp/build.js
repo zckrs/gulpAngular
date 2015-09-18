@@ -89,8 +89,7 @@ function html() {
       conditionals: true
     }))
     .pipe(htmlFilter.restore)
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
-    .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 };
 
 gulp.task('partials', partials);

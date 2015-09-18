@@ -5,15 +5,13 @@ var gulp = require('gulp');
 var conf = require('./conf');
 
 var $ = require('gulp-load-plugins')();
+var browserSync = require('browser-sync');
 
 var wiredep = require('wiredep').stream;
 var _ = require('lodash');
 
 function inject() {
-  var injectStyles = gulp.src([
-    path.join(conf.paths.tmp, '/serve/app/**/*.css'),
-    path.join('!' + conf.paths.tmp, '/serve/app/vendor.css')
-  ], { read: false });
+  var injectStyles = gulp.src(path.join(conf.paths.tmp, '/serve/app/index.css'), { read: false });
 
   var injectScripts = gulp.src([
     path.join(conf.paths.src, '/app/**/*.module.js'),
@@ -28,11 +26,12 @@ function inject() {
     addRootSlash: false
   };
 
-  return gulp.src(path.join(conf.paths.src, '/*.html'))
+  return gulp.src(path.join(conf.paths.src, '/index.html'))
     .pipe($.inject(injectStyles, injectOptions))
     .pipe($.inject(injectScripts, injectOptions))
     .pipe(wiredep(_.extend({}, conf.wiredep)))
-    .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')));
+    .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')))
+    .pipe(browserSync.stream());
 };
 
 gulp.task('inject', inject);

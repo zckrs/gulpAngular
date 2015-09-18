@@ -6,7 +6,7 @@ var conf = require('./conf');
 
 var browserSync = require('browser-sync');
 
-gulp.task('browser-sync', function(done) {
+function browserSyncInit(done) {
   browserSync.init({
     open: false,
     server: {
@@ -20,4 +20,6 @@ gulp.task('browser-sync', function(done) {
   gulp.watch(path.join(conf.paths.src, '/app/**/*.html'), browserSync.reload);
 
   done();
-});
+}
+
+gulp.task('browser-sync', browserSyncInit);

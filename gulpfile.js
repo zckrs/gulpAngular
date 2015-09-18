@@ -26,6 +26,8 @@ function watch(done) {
   done();
 };
 
-gulp.task('serve', gulp.series(watch, 'browser-sync'));
+gulp.task('watch', gulp.series(gulp.parallel('styles', 'scripts'), 'inject', watch));
+
+gulp.task('serve', gulp.series('watch', 'browser-sync'));
 
 gulp.task('default', gulp.series('clean', gulp.parallel('partials', 'styles', 'scripts'), 'inject', gulp.parallel('fonts', 'other'), 'html'));

@@ -10,7 +10,7 @@ function browserSyncInit(done) {
   browserSync.init({
     open: false,
     server: {
-      baseDir: ['.tmp/serve', 'src'],
+      baseDir: [path.join(conf.paths.tmp, '/serve'), conf.paths.src],
       routes: {
         "/bower_components": "bower_components"
       }

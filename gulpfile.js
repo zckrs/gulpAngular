@@ -4,13 +4,14 @@ var path = require('path');
 
 var gulp = require('gulp');
 var HubRegistry = require('gulp-hub');
+var browserSync = require('browser-sync');
 
 var conf = require('./gulp/conf');
 
-/* load some files into the registry */
-var hub = new HubRegistry(['gulp/build.js', 'gulp/styles.js', 'gulp/scripts.js', 'gulp/inject.js', 'gulp/browserSync.js']);
+/* Load some files into the registry */
+var hub = new HubRegistry(['gulp/build.js', 'gulp/styles.js', 'gulp/scripts.js', 'gulp/inject.js', 'gulp/browserSync.js', 'gulp/karma.js']);
 
-/* tell gulp to use the tasks just loaded */
+/* Tell gulp to use the tasks just loaded */
 gulp.registry(hub);
 
 function watch(done) {

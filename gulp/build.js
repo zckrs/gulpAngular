@@ -92,8 +92,8 @@ function html() {
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 };
 
-gulp.task('partials', partials);
 gulp.task('clean', clean);
-gulp.task('html', html);
+gulp.task('partials', partials);
 gulp.task('fonts', fonts);
 gulp.task('other', other);
+gulp.task('html', html);

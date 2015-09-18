@@ -1,14 +1,16 @@
 'use strict';
 
 var path = require('path');
-var gulp = require('gulp');
-var conf = require('./conf');
 
+var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
-
 var wiredep = require('wiredep').stream;
 var extend = require('deep-extend');
+
+var conf = require('./conf');
+
+gulp.task('inject', inject);
 
 function inject() {
   var injectStyles = gulp.src(path.join(conf.paths.tmp, '/serve/app/index.css'), { read: false });
@@ -33,5 +35,3 @@ function inject() {
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')))
     .pipe(browserSync.stream());
 };
-
-gulp.task('inject', inject);

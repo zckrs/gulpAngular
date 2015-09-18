@@ -1,12 +1,14 @@
 'use strict';
 
 var path = require('path');
+
 var gulp = require('gulp');
+var $ = require('gulp-load-plugins')();
+var uglifySaveLicense = require('uglify-save-license');
+
 var conf = require('./conf');
 
-var $ = require('gulp-load-plugins')({
-  pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
-});
+gulp.task('html', gulp.series(partials, html));
 
 function partials() {
   return gulp.src([
@@ -23,30 +25,6 @@ function partials() {
       root: 'app'
     }))
     .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
-};
-
-function clean() {
-  return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
-};
-
-function fonts() {
-  return gulp.src($.mainBowerFiles())
-    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
-    .pipe($.flatten())
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
-};
-
-function other() {
-  var fileFilter = $.filter(function (file) {
-    return file.stat.isFile();
-  });
-
-  return gulp.src([
-    path.join(conf.paths.src, '/**/*'),
-    path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
-  ])
-    .pipe(fileFilter)
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 };
 
 function html() {
@@ -69,7 +47,7 @@ function html() {
     .pipe(jsFilter)
     .pipe($.sourcemaps.init())
     .pipe($.ngAnnotate())
-    .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
+    .pipe($.uglify({ preserveComments: uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
     .pipe($.sourcemaps.write('maps'))
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
@@ -91,9 +69,3 @@ function html() {
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 };
-
-gulp.task('clean', clean);
-gulp.task('partials', partials);
-gulp.task('fonts', fonts);
-gulp.task('other', other);
-gulp.task('html', html);

@@ -31,6 +31,9 @@ var localConfig = {
   preprocessors: preprocessors
 };
 
+gulp.task('karma:single-run', karmaSingleRun);
+gulp.task('karma:auto-run', karmaAutoRun);
+
 function karmaSingleRun(done) {
   pathSrcJs.forEach(function(path) {
     preprocessors[path] = ['coverage'];
@@ -44,8 +47,6 @@ function karmaSingleRun(done) {
   karmaServer.start();
 }
 
-gulp.task('karma:single-run', karmaSingleRun);
-
 function karmaAutoRun(done) {
   localConfig.singleRun = false;
   localConfig.autoWatch = true;
@@ -55,5 +56,3 @@ function karmaAutoRun(done) {
   });
   karmaServer.start();
 }
-
-gulp.task('karma:auto-run', karmaAutoRun);

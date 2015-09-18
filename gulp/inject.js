@@ -8,7 +8,7 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 
 var wiredep = require('wiredep').stream;
-var _ = require('lodash');
+var extend = require('deep-extend');
 
 function inject() {
   var injectStyles = gulp.src(path.join(conf.paths.tmp, '/serve/app/index.css'), { read: false });
@@ -29,7 +29,7 @@ function inject() {
   return gulp.src(path.join(conf.paths.src, '/index.html'))
     .pipe($.inject(injectStyles, injectOptions))
     .pipe($.inject(injectScripts, injectOptions))
-    .pipe(wiredep(_.extend({}, conf.wiredep)))
+    .pipe(wiredep(extend({}, conf.wiredep)))
     .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')))
     .pipe(browserSync.stream());
 };

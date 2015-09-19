@@ -28,7 +28,7 @@ function browserSyncServe(done) {
 function browserSyncDist(done) {
   browserSync.init({
     server: {
-      baseDir: [conf.paths.dist],
+      baseDir: [conf.paths.dist]
     }
   });
 

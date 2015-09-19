@@ -15,14 +15,14 @@ gulp.task('other', other);
 
 function clean() {
   return del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
-};
+}
 
 function fonts() {
   return gulp.src(mainBowerFiles())
     .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
     .pipe($.flatten())
     .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
-};
+}
 
 function other() {
   var fileFilter = $.filter(function (file) {
@@ -35,4 +35,4 @@ function other() {
   ])
     .pipe(fileFilter)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
-};
+}

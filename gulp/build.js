@@ -22,7 +22,7 @@ function partials() {
       root: 'app'
     }))
     .pipe(gulp.dest(conf.paths.tmp));
-};
+}
 
 function html() {
   var partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/templateCacheHtml.js'), { read: false });
@@ -65,4 +65,4 @@ function html() {
     }))
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
-};
+}

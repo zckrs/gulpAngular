@@ -43,4 +43,4 @@ function styles() {
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(conf.paths.tmp))
     .pipe(browserSync.stream());
-};
+}

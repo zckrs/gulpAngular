@@ -3,7 +3,6 @@
 var path = require('path');
 
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
 var karma = require('karma');
 
 var conf = require('./conf');

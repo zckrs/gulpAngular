@@ -4,7 +4,6 @@ var path = require('path');
 
 var gulp = require('gulp');
 var HubRegistry = require('gulp-hub');
-var browserSync = require('browser-sync');
 
 var conf = require('./gulp/conf');
 
@@ -29,4 +28,4 @@ function watch(done) {
   gulp.watch(path.join(conf.paths.src, '/app/**/*.js'), gulp.series('scripts', 'inject'));
 
   done();
-};
+}

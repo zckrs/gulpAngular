@@ -6,7 +6,7 @@ var gulp = require('gulp');
 var protractor = require('gulp-protractor').protractor;
 var browserSync = require('browser-sync');
 
-var conf = require('./conf');
+var conf = require('./gulpconf');
 
 var argv = process.argv.slice(3); // forward args to protractor
 

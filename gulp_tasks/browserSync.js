@@ -5,7 +5,7 @@ var joinPath = require('path').join;
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 
-var conf = require('./conf');
+var conf = require('./gulpconf');
 
 gulp.task('browser-sync', browserSyncServe);
 gulp.task('browser-sync:dist', browserSyncDist);

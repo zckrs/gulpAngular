@@ -7,7 +7,7 @@ var $ = require('gulp-load-plugins')();
 var del = require('del');
 var mainBowerFiles = require('main-bower-files');
 
-var conf = require('./conf');
+var conf = require('./gulpconf');
 
 gulp.task('clean', clean);
 gulp.task('fonts', fonts);

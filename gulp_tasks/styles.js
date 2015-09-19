@@ -8,7 +8,7 @@ var browserSync = require('browser-sync');
 var wiredep = require('wiredep').stream;
 var extend = require('deep-extend');
 
-var conf = require('./conf');
+var conf = require('./gulpconf');
 
 gulp.task('styles', styles);
 

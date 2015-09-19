@@ -6,7 +6,7 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var uglifySaveLicense = require('uglify-save-license');
 
-var conf = require('./conf');
+var conf = require('./gulpconf');
 
 gulp.task('html', gulp.series(partials, html));
 

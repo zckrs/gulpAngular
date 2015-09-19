@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require('path');
+var joinPath = require('path').join;
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
@@ -14,14 +14,14 @@ gulp.task('fonts', fonts);
 gulp.task('other', other);
 
 function clean() {
-  return del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
+  return del([conf.paths.dist, conf.paths.tmp]);
 }
 
 function fonts() {
   return gulp.src(mainBowerFiles())
     .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
     .pipe($.flatten())
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
+    .pipe(gulp.dest(joinPath(conf.paths.dist, '/fonts/')));
 }
 
 function other() {
@@ -30,9 +30,9 @@ function other() {
   });
 
   return gulp.src([
-    path.join(conf.paths.src, '/**/*'),
-    path.join('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
+    joinPath(conf.paths.src, '/**/*'),
+    joinPath('!' + conf.paths.src, '/**/*.{html,css,js,scss}')
   ])
     .pipe(fileFilter)
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
+    .pipe(gulp.dest(conf.paths.dist));
 }

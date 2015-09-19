@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require('path');
+var joinPath = require('path').join;
 
 var gulp = require('gulp');
 var HubRegistry = require('gulp-hub');
@@ -18,14 +18,14 @@ gulp.task('serve', gulp.series(gulp.parallel('styles', 'scripts'), 'inject', wat
 gulp.task('serve:dist', gulp.series('default', 'browser-sync:dist'));
 
 function watch(done) {
-  gulp.watch([path.join(conf.paths.src, '/*.html'), 'bower.json'], gulp.parallel('inject'));
+  gulp.watch([joinPath(conf.paths.src, '/*.html'), 'bower.json'], gulp.parallel('inject'));
 
   gulp.watch([
-    path.join(conf.paths.src, '/app/**/*.css'),
-    path.join(conf.paths.src, '/app/**/*.scss')
+    joinPath(conf.paths.src, '/app/**/*.css'),
+    joinPath(conf.paths.src, '/app/**/*.scss')
   ], gulp.series('styles'));
 
-  gulp.watch(path.join(conf.paths.src, '/app/**/*.js'), gulp.series('scripts', 'inject'));
+  gulp.watch(joinPath(conf.paths.src, '/app/**/*.js'), gulp.series('scripts', 'inject'));
 
   done();
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require('path');
+var joinPath = require('path').join;
 
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
@@ -20,7 +20,7 @@ function browserSyncServe(done) {
     }
   });
 
-  gulp.watch(path.join(conf.paths.src, '/app/**/*.html'), browserSync.reload);
+  gulp.watch(joinPath(conf.paths.src, '/app/**/*.html'), browserSync.reload);
 
   done();
 }

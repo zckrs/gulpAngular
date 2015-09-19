@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require('path');
+var joinPath = require('path').join;
 
 var gulp = require('gulp');
 var karma = require('karma');
@@ -8,11 +8,11 @@ var karma = require('karma');
 var conf = require('./conf');
 
 var pathSrcHtml = [
-  path.join(conf.paths.src, '/**/*.html')
+  joinPath(conf.paths.src, '/**/*.html')
 ];
 
 var pathSrcJs = [
-  path.join(conf.paths.src, '/**/!(*.spec).js')
+  joinPath(conf.paths.src, '/**/!(*.spec).js')
 ];
 
 var karmaServer = {};
@@ -25,7 +25,7 @@ pathSrcHtml.forEach(function(path) {
 var reporters = ['progress'];
 
 var localConfig = {
-  configFile: path.join(__dirname, '/../karma.conf.js'),
+  configFile: joinPath(__dirname, '/../karma.conf.js'),
   reporters: reporters,
   preprocessors: preprocessors
 };

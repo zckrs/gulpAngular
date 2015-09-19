@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require('path');
+var joinPath = require('path').join;
 
 var gulp = require('gulp');
 var protractor = require('gulp-protractor').protractor;
@@ -28,7 +28,7 @@ function runOnServe() {
     browser: []
   });
 
-  return gulp.src(path.join(conf.paths.e2e, '/**/*.js'))
+  return gulp.src(joinPath(conf.paths.e2e, '/**/*.js'))
     .pipe(protractor({
       configFile: 'protractor.conf.js',
       args: argv
@@ -48,7 +48,7 @@ function runOnDist() {
     browser: []
   });
 
-  return gulp.src(path.join(conf.paths.e2e, '/**/*.js'))
+  return gulp.src(joinPath(conf.paths.e2e, '/**/*.js'))
     .pipe(protractor({
       configFile: 'protractor.conf.js',
       args: argv

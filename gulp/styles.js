@@ -1,6 +1,6 @@
 'use strict';
 
-var path = require('path');
+var joinPath = require('path').join;
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
@@ -18,8 +18,8 @@ function styles() {
   };
 
   var injectFiles = gulp.src([
-    path.join(conf.paths.src, '/app/**/*.scss'),
-    path.join('!' + conf.paths.src, '/app/index.scss')
+    joinPath(conf.paths.src, '/app/**/*.scss'),
+    joinPath('!' + conf.paths.src, '/app/index.scss')
   ], { read: false });
 
   var injectOptions = {
@@ -33,7 +33,7 @@ function styles() {
   };
 
   return gulp.src([
-    path.join(conf.paths.src, '/app/index.scss')
+    joinPath(conf.paths.src, '/app/index.scss')
   ])
     .pipe($.inject(injectFiles, injectOptions))
     .pipe(wiredep(extend({}, conf.wiredep)))

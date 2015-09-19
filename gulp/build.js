@@ -40,7 +40,7 @@ function html() {
   var cssFilter = $.filter('**/*.css', { restore: true });
   var assets;
 
-  return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
+  return gulp.src(path.join(conf.paths.tmp, '/serve/index.html'))
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
     .pipe(assets = $.useref.assets())
     .pipe($.rev())

@@ -8,7 +8,7 @@ var uglifySaveLicense = require('uglify-save-license');
 
 var conf = require('./gulpconf');
 
-gulp.task('html', gulp.series(partials, html));
+gulp.task('build', gulp.series(partials, build));
 
 function partials() {
   return gulp.src(joinPath(conf.paths.src, '/app/**/*.html'))
@@ -24,7 +24,7 @@ function partials() {
     .pipe(gulp.dest(conf.paths.tmp));
 }
 
-function html() {
+function build() {
   var partialsInjectFile = gulp.src(joinPath(conf.paths.tmp, '/templateCacheHtml.js'), { read: false });
   var partialsInjectOptions = {
     starttag: '<!-- inject:partials -->',

@@ -13,7 +13,7 @@ var hub = new HubRegistry(['gulp_tasks/misc.js' ,'gulp_tasks/build.js', 'gulp_ta
 // Tell gulp to use the tasks just loaded
 gulp.registry(hub);
 
-gulp.task('default', gulp.series('clean', gulp.parallel('styles', 'scripts'), 'inject', gulp.parallel('fonts', 'other'), 'html'));
+gulp.task('default', gulp.series('clean', gulp.parallel('styles', 'scripts'), 'inject', gulp.parallel('fonts', 'other'), 'build'));
 gulp.task('serve', gulp.series(gulp.parallel('styles', 'scripts'), 'inject', watch, 'browser-sync'));
 gulp.task('serve:dist', gulp.series('default', 'browser-sync:dist'));
 

@@ -19,7 +19,7 @@ gulp.task('protractor:dist', gulp.series('webdriver_update', runOnDist));
 function runOnServe() {
   browserSync.init({
     server: {
-      baseDir: [path.join(conf.paths.tmp, '/serve'), conf.paths.src],
+      baseDir: [conf.paths.tmp, conf.paths.src],
       routes: {
         '/bower_components': 'bower_components'
       }

@@ -13,7 +13,7 @@ var conf = require('./conf');
 gulp.task('inject', inject);
 
 function inject() {
-  var injectStyles = gulp.src(path.join(conf.paths.tmp, '/serve/app/index.css'), { read: false });
+  var injectStyles = gulp.src(path.join(conf.paths.tmp, '/index.css'), { read: false });
 
   var injectScripts = gulp.src([
     path.join(conf.paths.src, '/app/**/*.module.js'),
@@ -24,7 +24,7 @@ function inject() {
   .pipe($.angularFilesort()).on('error', conf.errorHandler('AngularFilesort'));
 
   var injectOptions = {
-    ignorePath: [conf.paths.src, path.join(conf.paths.tmp, '/serve')],
+    ignorePath: [conf.paths.src, conf.paths.tmp],
     addRootSlash: false
   };
 
@@ -32,6 +32,6 @@ function inject() {
     .pipe($.inject(injectStyles, injectOptions))
     .pipe($.inject(injectScripts, injectOptions))
     .pipe(wiredep(extend({}, conf.wiredep)))
-    .pipe(gulp.dest(path.join(conf.paths.tmp, '/serve')))
+    .pipe(gulp.dest(conf.paths.tmp))
     .pipe(browserSync.stream());
 };

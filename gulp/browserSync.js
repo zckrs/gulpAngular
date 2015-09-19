@@ -13,7 +13,7 @@ gulp.task('browser-sync:dist', browserSyncDist);
 function browserSyncServe(done) {
   browserSync.init({
     server: {
-      baseDir: [path.join(conf.paths.tmp, '/serve'), conf.paths.src],
+      baseDir: [conf.paths.tmp, conf.paths.src],
       routes: {
         "/bower_components": "bower_components"
       }

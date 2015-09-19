@@ -11,10 +11,7 @@ var conf = require('./conf');
 gulp.task('html', gulp.series(partials, html));
 
 function partials() {
-  return gulp.src([
-    path.join(conf.paths.src, '/app/**/*.html'),
-    path.join(conf.paths.tmp, '/serve/app/**/*.html')
-  ])
+  return gulp.src(path.join(conf.paths.src, '/app/**/*.html'))
     .pipe($.minifyHtml({
       empty: true,
       spare: true,
@@ -24,14 +21,14 @@ function partials() {
       module: 'gulpAngular',
       root: 'app'
     }))
-    .pipe(gulp.dest(conf.paths.tmp + '/partials/'));
+    .pipe(gulp.dest(conf.paths.tmp));
 };
 
 function html() {
-  var partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/partials/templateCacheHtml.js'), { read: false });
+  var partialsInjectFile = gulp.src(path.join(conf.paths.tmp, '/templateCacheHtml.js'), { read: false });
   var partialsInjectOptions = {
     starttag: '<!-- inject:partials -->',
-    ignorePath: path.join(conf.paths.tmp, '/partials'),
+    ignorePath: conf.paths.tmp,
     addRootSlash: false
   };
 
@@ -40,7 +37,7 @@ function html() {
   var cssFilter = $.filter('**/*.css', { restore: true });
   var assets;
 
-  return gulp.src(path.join(conf.paths.tmp, '/serve/index.html'))
+  return gulp.src(path.join(conf.paths.tmp, '/index.html'))
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
     .pipe(assets = $.useref.assets())
     .pipe($.rev())

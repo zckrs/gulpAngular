@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path');
-var conf = require('./gulp/conf');
+var conf = require('./gulp_tasks/gulpconf');
 
 var extend = require('deep-extend');
 var wiredep = require('wiredep');

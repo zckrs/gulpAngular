@@ -1,0 +1,10 @@
+.class-injected {
+  text-transform: capitalize;
+  color: #cb3837;
+
+  &:after {
+    animation: cursor-blink 0.4s linear infinite;
+    content: "|";
+    color: #cb3837;
+  }
+}

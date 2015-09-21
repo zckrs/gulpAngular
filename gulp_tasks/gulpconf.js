@@ -18,6 +18,15 @@ exports.paths = {
   e2e: 'e2e'
 };
 
+if (process.env.CI === 'true') {
+  exports.paths = {
+    src: 'testGulpTasks/fixture/src',
+    dist: 'testGulpTasks/build/dist',
+    tmp: 'testGulpTasks/build/.tmp',
+    e2e: 'testGulpTasks/fixture/e2e'
+  };
+}
+
 /**
  *  Wiredep is the lib which inject bower dependencies in your project
  *  Mainly used to inject script tags in the index.html but also used

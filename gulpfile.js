@@ -14,9 +14,11 @@ var hub = new HubRegistry(['gulp_tasks/misc.js' ,'gulp_tasks/build.js', 'gulp_ta
 gulp.registry(hub);
 
 gulp.task('inject', gulp.series(gulp.parallel('styles', 'scripts'), 'inject'));
+gulp.task('build', gulp.series('inject', gulp.parallel('fonts', 'other'), 'build'));
+
 gulp.task('serve', gulp.series('inject', watch, 'browser-sync'));
 gulp.task('serve:dist', gulp.series('default', 'browser-sync:dist'));
-gulp.task('default', gulp.series('clean', 'inject', gulp.parallel('fonts', 'other'), 'build'));
+gulp.task('default', gulp.series('clean', 'build'));
 
 function watch(done) {
   gulp.watch([joinPath(conf.paths.src, '/*.html'), 'bower.json'], gulp.parallel('inject'));

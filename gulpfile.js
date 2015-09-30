@@ -8,7 +8,7 @@ var HubRegistry = require('gulp-hub');
 var conf = require('./gulp_tasks/gulpconf');
 
 // Load some files into the registry
-var hub = new HubRegistry(['gulp_tasks/misc.js' ,'gulp_tasks/build.js', 'gulp_tasks/styles.js', 'gulp_tasks/scripts.js', 'gulp_tasks/inject.js', 'gulp_tasks/browserSync.js', 'gulp_tasks/karma.js', 'gulp_tasks/protractor.js']);
+var hub = new HubRegistry(['gulp_tasks/misc.js', 'gulp_tasks/build.js', 'gulp_tasks/styles.js', 'gulp_tasks/scripts.js', 'gulp_tasks/inject.js', 'gulp_tasks/browserSync.js', 'gulp_tasks/karma.js', 'gulp_tasks/protractor.js']);
 
 // Tell gulp to use the tasks just loaded
 gulp.registry(hub);

@@ -39,4 +39,28 @@ describe('Gulp task: build', function() {
     });
   });
 
+  describe('should have styles directory in dist', function() {
+    it('who exist', function() {
+      assert.file(join(conf.paths.dist, 'styles'));
+    });
+  });
+
+  describe('should have scripts directory in dist', function() {
+    it('who exist', function() {
+      assert.file(join(conf.paths.dist, 'scripts'));
+    });
+  });
+
+  describe('should have maps directory in dist', function() {
+    it('who exist', function() {
+      assert.file(join(conf.paths.dist, 'maps'));
+    });
+  });
+
+  describe('should have fonts directory in dist', function() {
+    it('who exist', function() {
+      assert.file(join(conf.paths.dist, 'fonts'));
+    });
+  });
+
 });

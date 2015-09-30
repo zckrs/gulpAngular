@@ -39,7 +39,9 @@ function build() {
 
   return gulp.src(joinPath(conf.paths.tmp, '/index.html'))
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-    .pipe(assets = $.useref.assets())
+    .pipe(assets = $.useref.assets({
+      searchPath: [conf.paths.tmp, conf.paths.src]
+    }))
     .pipe($.rev())
     .pipe(jsFilter)
     .pipe($.sourcemaps.init())

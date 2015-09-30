@@ -12,6 +12,15 @@ describe('Gulp task: build', function() {
     gulpHelpers.cleanAndRun([conf.paths.dist, conf.paths.tmp], 'build', done);
   });
 
+  describe('should compute templateCacheHtml.js in tmp folder', function() {
+    it('who exist', function() {
+      assert.file(join(conf.paths.tmp, 'templateCacheHtml.js'));
+    });
+    it('who contains some characters', function() {
+      assert.fileContent(join(conf.paths.tmp, 'templateCacheHtml.js'), 'fake partial');
+    });
+  });
+
   describe('should have index.html in dist folder', function() {
     it('who exist', function() {
       assert.file(join(conf.paths.dist, 'index.html'));

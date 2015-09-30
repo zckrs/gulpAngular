@@ -8,9 +8,14 @@ exports.cleanAndRun = function (paths, task, callback) {
 
     var gulp = spawn('node', ['node_modules/.bin/gulp', task]);
 
+    // gulp.stdout.on('data', function(data) {
+    //   console.log('STDOUT: ' + data);
+    // });
+
     gulp.stderr.on('data', function(data) {
       console.log('STDERR: ' + data);
     });
+
 
     gulp.on('close', function(code) {
       if (code !== 0) {

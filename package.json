@@ -3,18 +3,20 @@
   "version": "0.0.0",
   "dependencies": {},
   "scripts": {
+    "serve:dist": "gulp serve:dist",
+    "testGulp": "CI=true mocha testGulpTasks/*.mocha.js -t 100000",
     "build": "gulp",
     "serve": "gulp serve",
-    "serve:dist": "gulp serve:dist",
-    "test": "gulp karma:single-run",
-    "testGulp": "CI=true mocha testGulpTasks/*.mocha.js -t 100000"
+    "test": "gulp karma:single-run"
   },
   "devDependencies": {
-    "browser-sync": "~2.9.3",
     "cross-spawn": "~2.0.0",
     "deep-extend": "~0.4.0",
     "del": "~2.0.2",
     "eslint-plugin-angular": "~0.12.0",
+    "mocha": "~2.3.2",
+    "yeoman-assert": "~2.1.0",
+    "browser-sync": "~2.9.8",
     "gulp": "gulpjs/gulp#4.0",
     "gulp-angular-filesort": "~1.1.1",
     "gulp-angular-templatecache": "~1.7.0",
@@ -44,11 +46,8 @@
     "karma-ng-html2js-preprocessor": "~0.1.2",
     "karma-phantomjs-launcher": "~0.2.1",
     "main-bower-files": "~2.9.0",
-    "mocha": "~2.3.2",
-    "phantomjs": "~1.9.18",
     "uglify-save-license": "~0.4.1",
-    "wiredep": "~2.2.2",
-    "yeoman-assert": "~2.1.0"
+    "wiredep": "~2.2.2"
   },
   "engines": {
     "node": ">=0.10.0"

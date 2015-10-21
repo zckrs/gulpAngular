@@ -1,9 +1,9 @@
 'use strict';
 
 var path = require('path');
-var conf = require('./gulp_tasks/gulpconf');
+var conf = require('./gulp/conf');
 
-var extend = require('deep-extend');
+var _ = require('lodash');
 var wiredep = require('wiredep');
 
 var pathSrcHtml = [
@@ -11,7 +11,7 @@ var pathSrcHtml = [
 ];
 
 function listFiles() {
-  var wiredepOptions = extend({}, conf.wiredep, {
+  var wiredepOptions = _.extend({}, conf.wiredep, {
     dependencies: true,
     devDependencies: true
   });
@@ -40,7 +40,7 @@ module.exports = function(config) {
       moduleName: 'gulpAngular'
     },
 
-    logLevel: 'ERROR',
+    logLevel: 'WARN',
 
     frameworks: ['jasmine', 'angular-filesort'],
 
@@ -67,7 +67,7 @@ module.exports = function(config) {
   };
 
   // This is the default preprocessors configuration for a usage with Karma cli
-  // The coverage preprocessor in added in gulp/unit-test.js only for single tests
+  // The coverage preprocessor is added in gulp/unit-test.js only for single tests
   // It was not possible to do it there because karma doesn't let us now if we are
   // running a single test or not
   configuration.preprocessors = {};

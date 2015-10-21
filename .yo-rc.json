@@ -74,5 +74,12 @@
         "tmp": ".tmp"
       }
     }
+  },
+  "generator-fountain-angularjs-gulpfile": {
+    "props": {
+      "cssPreprocessor": "scss",
+      "jsPreprocessor": "html",
+      "htmlPreprocessor": "js"
+    }
   }
 }

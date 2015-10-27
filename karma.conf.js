@@ -1,7 +1,7 @@
 'use strict';
 
 var path = require('path');
-var conf = require('./gulp/conf');
+var conf = require('./gulp_tasks/gulpconf');
 
 var _ = require('lodash');
 var wiredep = require('wiredep');
@@ -21,7 +21,7 @@ function listFiles() {
       path.join(conf.paths.src, '/app/**/*.module.js'),
       path.join(conf.paths.src, '/app/**/*.js'),
       path.join(conf.paths.src, '/**/*.spec.js'),
-      path.join(conf.paths.src, '/**/*.mock.js'),
+      path.join(conf.paths.src, '/**/*.mock.js')
     ])
     .concat(pathSrcHtml);
 }
